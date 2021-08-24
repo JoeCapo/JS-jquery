@@ -15,11 +15,7 @@
         padding: 20px;
     }
 </style>
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();   
-    });
-</script>
+
 
 <body>
     <div class="container">
@@ -44,36 +40,44 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="input" name="input" />
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary" data-toggle="tooltip" title="Add Item to list">Add</button>
+                            <button class="btn btn-outline-primary" type="button" data-toggle="tooltip" title="Add Item to list">Add</button>
                         </div>
                     </div>
-                    <div id="task-body" class="col-12">
-
-                    </div>
                 </form>
+                <div id="task-body" class="col-12">
+                    
+                </div>
             </div>
         </div>
     </div>
 
 </body>
+
 <script>
+    //const tasks = ["Taks 1", "Task 2", "Task 3"]
+    
     $(document).ready(function(){  
+
+        let tasks = [];
+
         $("button").click(function(){
             //only add if input has text
-            if ($('#input').val().length != 0) {                
-                let val = $("input").val();//get text from input field                
-                var x = $('#task-body').html();//get div for adding list item                
-                let html = `<div class="list-group-item" data-dismiss="alert">${val}<a href="#" class="close">x</a></div>`;//set html for text input
-                $("#task-body").html(html + x);//add list item to div
+            if ($('#input').val()) {         
+                let val = $("#input").val();//get text from input field 
+                 tasks.push(val);
+                $("#task-body").html(tasks.map(function(value) {
+                    return `<div class="list-group-item" data-dismiss="alert">${value}<a href="#" class="close">x</a></div>`;
+                }).join(""));       
                 $('#input').val("");//set input back to empty string
-            }else alert("Enter some Text!");//alert if no text is entered
+           }else alert("Enter some Text!");//alert if no text is entered
         });
+
         // When Task is clicked
         $(document).on('click', '.list-group-item', function() {
             $(this).remove(); //remove current list item
         });
+        $('[data-toggle="tooltip"]').tooltip(); 
     });
- 
 </script>
 
 </html>
