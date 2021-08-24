@@ -66,7 +66,7 @@
                 let val = $("#input").val();//get text from input field 
                  tasks.push(val);
                 $("#task-body").html(tasks.map(function(value) {
-                    return `<div class="list-group-item" data-dismiss="alert">${value}<a href="#" class="close">x</a></div>`;
+                    return `<div class="list-group-item" data-dismiss="alert" data-toggle="tooltip" title="Delete Item">${value}<a href="#" class="close">x</a></div>`;
                 }).join(""));       
                 $('#input').val("");//set input back to empty string
            }else alert("Enter some Text!");//alert if no text is entered
@@ -76,6 +76,7 @@
         $(document).on('click', '.list-group-item', function() {
             $(this).remove(); //remove current list item
         });
+        // Add Tooltip
         $('[data-toggle="tooltip"]').tooltip(); 
     });
 </script>
