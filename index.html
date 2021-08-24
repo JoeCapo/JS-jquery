@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>JQUERY TODO</title>
+</head>
+<style>
+    .card form{
+        padding: 20px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+</script>
+
+<body>
+    <div class="container">
+        <!-- <div class="row">
+            <div class="card col-9">
+                <h2>JQuery Todo List</h2>
+                <p>Sample todo list to learn the jquery library!!!</p>
+            </div> -->
+            <div class="card col-3">
+                <img class="card-img-top" src="images/3pm_design.png" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">Joe Caporiccio</h4>
+                    <p class="card-text">Just learning some stuff</p>
+                    <a href="#" class="card-link">Card link</a>
+                </div>
+            </div>
+        </div>
+<br/>
+        <div class="container">
+            <div class="card col-8 mx-auto">
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="input" name="input" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" data-toggle="tooltip" title="Add Item to list">Add</button>
+                        </div>
+                    </div>
+                    <div id="task-body" class="col-12">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    $(document).ready(function(){  
+        $("button").click(function(){
+            //only add if input has text
+            if ($('#input').val().length != 0) {                
+                let val = $("input").val();//get text from input field                
+                var x = $('#task-body').html();//get div for adding list item                
+                let html = `<div class="list-group-item" data-dismiss="alert">${val}<a href="#" class="close">x</a></div>`;//set html for text input
+                $("#task-body").html(html + x);//add list item to div
+                $('#input').val("");//set input back to empty string
+            }else alert("Enter some Text!");//alert if no text is entered
+        });
+        // When Task is clicked
+        $(document).on('click', '.list-group-item', function() {
+            $(this).remove(); //remove current list item
+        });
+    });
+ 
+</script>
+
+</html>
